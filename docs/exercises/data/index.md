@@ -1,6 +1,6 @@
 ---
 exercise: data
-ai_use: "Claude and ChatGPT were used to support code development, debugging, visualization, and language review. I reviewed and understood the submitted code and analysis."
+ai_use: "ChatGPT and Claude were used to help interpret the requirements, develop and debug the Python code, organize the report, generate and review the visualizations, and improve the written explanations. I reviewed the submitted work and understand the methods and results."
 ---
 
 # Data Preparation and Analysis for Neural Networks
