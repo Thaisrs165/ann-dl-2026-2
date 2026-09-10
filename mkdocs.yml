@@ -2,11 +2,11 @@
 #  Portfólio individual — Redes Neurais Artificiais & Deep Learning
 #  Enunciados da disciplina: https://insper.github.io/ann-dl/
 # =============================================================================
-site_name: ANN-DL · Thaís Silveira
-site_author: Thaís Silveira
-site_url: https://Thaisrs165.github.io/ann-dl-2026-2/
-repo_url: https://github.com/Thaisrs165/ann-dl-2026-2
-repo_name: Thaisrs165/ann-dl-2026-2
+site_name: "ANN-DL · Thaís Silveira"
+site_author: "Thaís Silveira"
+site_url: "https://thaisrs165.github.io/ann-dl-2026-2/"
+repo_url: "https://github.com/Thaisrs165/ann-dl-2026-2"
+repo_name: "Thaisrs165/ann-dl-2026-2"
 
 theme:
   name: material
@@ -97,10 +97,6 @@ plugins:
       lang: pt
   # Lightbox nas figuras dos relatórios
   - glightbox
-  # A data da última alteração é a evidência do prazo de entrega
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - git-authors
   - minify:
       minify_html: true
   # Renderiza notebooks .ipynb colocados diretamente na nav
@@ -118,6 +114,11 @@ validation:
   unrecognized_links: warn
   anchors: warn
 
+# O dataset bruto do Exercise 3 nunca deve ser copiado para o site publicado, mesmo em um
+# `mkdocs gh-deploy` local (que publica o que estiver em disco, gitignore à parte).
+exclude_docs: |
+  /exercises/data/spaceship-titanic/
+
 # Os scripts de code/ ficam no repositório e são incluídos nos relatórios via --8<--,
 # mas não são páginas da navegação.
 not_in_nav: |
@@ -134,7 +135,10 @@ extra_javascript:
 nav:
   - Home: index.md
   - Exercises:
+      - Overview: exercises/index.md
       - Data: exercises/data/index.md
       - Perceptron: exercises/perceptron/index.md
       - MLP: exercises/mlp/index.md
       - VAE: exercises/vae/index.md
+  - Project:
+      - Overview: projects/index.md

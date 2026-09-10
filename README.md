@@ -1,7 +1,8 @@
-# ANN-DL — Portfólio individual
+# ANN-DL — Portfólio
 
-Portfólio pessoal das entregas individuais da disciplina de Redes Neurais Artificiais &
-Deep Learning, semestre **2026.2** — [enunciados](https://insper.github.io/ann-dl/).
+Portfólio das entregas da disciplina de Redes Neurais Artificiais & Deep Learning, semestre
+**2026.2** — [enunciados](https://insper.github.io/ann-dl/). Os exercícios são individuais;
+o projeto é em equipe.
 
 Site gerado com [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) e publicado
 no GitHub Pages.
@@ -11,14 +12,17 @@ no GitHub Pages.
 ```
 docs/
   index.md                     # capa: identificação e status das entregas
-  exercises/
+  exercises/                   # individuais
+    index.md                   # overview da seção
     data/{index.md,code/,figures/}
     perceptron/{index.md,code/,figures/}
     mlp/{index.md,code/,figures/}
     vae/{index.md,code/,figures/}
+  projects/                    # em equipe: um dataset, três entregas (ainda não iniciado)
+    index.md
 ```
 
-Cada exercício tem a própria pasta: `index.md` para o relatório, `code/` para os scripts e
+Cada entrega tem a própria pasta: `index.md` para o relatório, `code/` para os scripts e
 `figures/` para as imagens geradas.
 
 ## Setup

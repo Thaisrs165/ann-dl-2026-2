@@ -5,4 +5,4 @@ ai_use: "none"
 
 # MLP
 
-This exercise has not been completed yet.
+This individual exercise has not been completed yet.

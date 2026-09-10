@@ -5,4 +5,4 @@ ai_use: "none"
 
 # VAE
 
-This exercise has not been completed yet.
+This individual exercise has not been completed yet.
