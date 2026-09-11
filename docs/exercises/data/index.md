@@ -5,7 +5,7 @@ ai_use: "ChatGPT and Claude were used to support interpretation of the requireme
 
 # Data Preparation and Analysis for Neural Networks
 
-!!! abstract "Enunciado"
+!!! abstract "Assignment"
 
     [Exercises → Data](https://insper.github.io/ann-dl/2026.2/exercises/data/){:target='_blank'}
 
@@ -25,7 +25,7 @@ and standard deviations given in the assignment. Each of the two features is sam
 independently with `rng.normal(mean, std, size=100)`, so the covariance of every class is
 diagonal — there is no assumed correlation between \(x_1\) and \(x_2\).
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex1-a"
 ```
 
@@ -41,7 +41,7 @@ piecewise-linear partition of the plane — a set of linear boundaries, not one 
 
 ![Four Gaussian classes at s = 1.0 with estimated nearest-mean linear boundaries](figures/figure1.png)
 /// caption
-**Figure 1** — Scatter of the 400 points (100 per class) at `s = 1.0`, with the four class
+**Figure 1 —** Scatter of the 400 points (100 per class) at `s = 1.0`, with the four class
 means marked as gold stars and the estimated linear decision boundaries (dashed) of a
 nearest-mean classifier overlaid. Boundaries and means use markers and colors distinct from
 the observations so the three layers cannot be confused.
@@ -61,13 +61,13 @@ illustrate what a piecewise-linear decision rule looks like on this geometry.
 4.0]` multiplying every class standard deviation; the means never change. All four draws
 continue consuming the same `rng` used in part A.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex1-b"
 ```
 
 ![Class spread across the four tested scales, shared axes](figures/figure2.png)
 /// caption
-**Figure 2** — The same four classes at `s = 0.5, 1.0, 2.0, 4.0`, one subplot per scale, all
+**Figure 2 —** The same four classes at `s = 0.5, 1.0, 2.0, 4.0`, one subplot per scale, all
 sharing axis limits computed from the combined data of all four scales so that the growth of
 the clouds is directly comparable.
 ///
@@ -79,7 +79,7 @@ the clouds is directly comparable.
 Center distance is \(\lVert\mu_i-\mu_j\rVert\), combined average spread is
 \(\bar{\sigma}_i+\bar{\sigma}_j\), and their quotient is the separation ratio \(r_{ij}\).
 
-| Pair | Center distance \(\lVert\mu_i-\mu_j\rVert\) | Combined average spread \(\bar{\sigma}_i+\bar{\sigma}_j\) | Separation ratio \(r_{ij}\) |
+| Pair | Center distance | Combined average spread | Separation ratio |
 |---|---:|---:|---:|
 | (0, 1) | 4.2426 | 3.20 | **1.3258** |
 | (1, 2) | 6.7082 | 2.45 | 2.3800 |
@@ -99,7 +99,7 @@ in the numerator is fixed and every \(\bar{\sigma}\) in the denominator scales l
 assigned to its nearest mean, and the mixing rate is the fraction of points whose nearest-mean
 label disagrees with the true generating label:
 
-| Scale \(s\) | Mixing rate |
+| Scale (s) | Mixing rate |
 |:---:|---:|
 | 0.5 | 0.0025 |
 | 1.0 | 0.0725 |
@@ -108,7 +108,7 @@ label disagrees with the true generating label:
 
 ![Mixing rate as a function of the spread scale](figures/figure3.png)
 /// caption
-**Figure 3** — Fraction of points misassigned by the nearest-mean rule, plotted against
+**Figure 3 —** Fraction of points misassigned by the nearest-mean rule, plotted against
 `scale`. The rate grows from 0.25% at `s = 0.5` to 43.5% at `s = 4.0`.
 ///
 
@@ -119,9 +119,10 @@ and 1 visibly interleave, though the mixing rate is still low (7.25%) because th
 pairs remain well separated. By `s = 2.0` the smallest ratio drops to 0.66 (below 1, meaning
 the gap between the closest means is now smaller than their combined average spread) and the
 mixing rate rises sharply to 23.25%: Figure 2's third panel shows Classes 0, 1, and 2
-overlapping in a shared central region that no straight boundary can cleanly split. At `s =
-4.0` the mixing rate reaches 43.5% — close to the roughly 75% a random 4-way guess would
-average — and Figure 2's last panel shows all four clouds merged into one smear. Based on
+overlapping in a shared central region that no straight boundary can cleanly split. At s = 4.0,
+the mixing rate reaches 43.5%, showing substantial confusion, although it remains below the
+75% error rate expected from uniform random guessing among four classes. Figure 2's last panel
+shows all four clouds merged into one smear. Based on
 Figure 2, the mixing rates, and the separation ratio, `s = 2.0` is the point at which this
 particular sample can no longer be cleanly separated with straight boundaries; this describes
 the empirical, plotted separation of this specific 400-point draw, not a proof that no linear
@@ -167,7 +168,7 @@ with the given correlated covariance `sigma_a`; Class B (\(N=500\)) is drawn fro
 multivariate normal centered at \((1.5,\dots,1.5)\) with a different covariance `sigma_b`. Both
 draws use `rng.multivariate_normal`, continuing the same `rng` from Exercise 1.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex2-a"
 ```
 
@@ -179,7 +180,7 @@ radius drawn from \(\text{Normal}(2.0, 0.4)\) for Class C or \(\text{Normal}(5.0
 D. The result is two roughly spherical shells centered at the origin with different, mostly
 non-overlapping radii.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex2-b"
 ```
 
@@ -191,13 +192,13 @@ classifier is trained. Class centers, the Euclidean distance between the two cen
 dataset, and every observation's radius from the origin are also computed directly in the
 original 5D space.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex2-c"
 ```
 
 ![PCA projections of Dataset I and Dataset II](figures/figure4.png)
 /// caption
-**Figure 4** — Left: Dataset I (Classes A/B) projected onto its own first two principal
+**Figure 4 —** Left: Dataset I (Classes A/B) projected onto its own first two principal
 components, PC1 + PC2 explained variance = 0.5135 + 0.1588 = **0.6723**. Right: Dataset II
 (Classes C/D) projected onto its own first two principal components, PC1 + PC2 explained
 variance = 0.2164 + 0.2147 = **0.4310**.
@@ -205,7 +206,7 @@ variance = 0.2164 + 0.2147 = **0.4310**.
 
 ![Radius-from-origin histograms for both datasets](figures/figure5.png)
 /// caption
-**Figure 5** — Left: Dataset I, radius \(\lVert x \rVert\) from the origin, Class A vs. Class B,
+**Figure 5 —** Left: Dataset I, radius \(\lVert x \rVert\) from the origin, Class A vs. Class B,
 common bins. Right: Dataset II, radius from the origin, Class C vs. Class D, common bins. The
 two classes in Dataset II barely overlap in radius even though their centers are nearly
 coincident.
@@ -282,7 +283,7 @@ for this dataset. The script below loads the raw 8693-row `train.csv`, reports t
 balance, lists which features are numerical vs. categorical, counts missing values per
 column, and summarizes the five spending columns.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise3_spaceship_titanic.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise3_spaceship_titanic.py:ex3-a"
 ```
 
@@ -324,7 +325,7 @@ extremely large amounts, pulling the mean far above the typical (median) value.
 **Approach.** Features and target are separated first, then split with `test_size=0.20`,
 `stratify=y`, `random_state=42` — before any imputer, encoder, or scaler is fit.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise3_spaceship_titanic.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise3_spaceship_titanic.py:ex3-b"
 ```
 
@@ -354,7 +355,7 @@ on the training subset (this repository's scikit-learn is 1.9.1, which uses the
 `sparse_output` argument natively — no compatibility shim was needed). The final matrices
 horizontally stack the scaled numeric block and the one-hot categorical block.
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise3_spaceship_titanic.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise3_spaceship_titanic.py:ex3-c"
 ```
 
@@ -386,13 +387,13 @@ zero gradient.
 
 ### D — Verify and visualize
 
-``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise3_spaceship_titanic.py" }
+``` { .python .copy .select linenums='1' }
 --8<-- "docs/exercises/data/code/exercise3_spaceship_titanic.py:ex3-d"
 ```
 
 ![FoodCourt before and after preprocessing](figures/figure6.png)
 /// caption
-**Figure 6** — Left: raw training-set `FoodCourt` values (missing rows dropped for the
+**Figure 6 —** Left: raw training-set `FoodCourt` values (missing rows dropped for the
 histogram only), heavily concentrated at 0 with a long right tail out to ~30000. Right: the
 same training-set column after median imputation, `log1p`, and `StandardScaler` (fit on the
 training set), now spanning roughly −2 to 3.5 with the zero-spending spike still visible as
@@ -426,11 +427,11 @@ to everyone else, so the optimizer sees a much better-conditioned input distribu
 
 |  # | Item                                                                    | Your value |
 | -: | ------------------------------------------------------------------------| ---------- |
-|  1 | Mixing rate at \(s=0.5\)                                                  | 0.0025 |
-|  2 | Mixing rate at \(s=1.0\)                                                  | 0.0725 |
-|  3 | Mixing rate at \(s=2.0\)                                                  | 0.2325 |
-|  4 | Mixing rate at \(s=4.0\)                                                  | 0.4350 |
-|  5 | Smallest \(r_{ij}\) at \(s=1.0\), and which pair                            | 1.3258, pair (0, 1) |
+|  1 | Mixing rate at scale s = 0.5                                            | 0.0025 |
+|  2 | Mixing rate at scale s = 1.0                                            | 0.0725 |
+|  3 | Mixing rate at scale s = 2.0                                            | 0.2325 |
+|  4 | Mixing rate at scale s = 4.0                                            | 0.4350 |
+|  5 | Smallest separation ratio r_ij at s = 1.0, and which pair               | 1.3258, pair (0, 1) |
 |  6 | Distance between centers — Dataset I                                    | 3.4053 |
 |  7 | Distance between centers — Dataset II                                   | 0.2347 |
 |  8 | Explained variance PC1 + PC2 — Dataset I                                | 0.6723 |
