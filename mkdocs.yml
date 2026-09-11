@@ -10,7 +10,7 @@ repo_name: "Thaisrs165/ann-dl-2026-2"
 
 theme:
   name: material
-  language: pt-BR
+  language: en
   palette:
     # Modo claro
     - media: "(prefers-color-scheme: light)"
@@ -94,7 +94,7 @@ markdown_extensions:
 
 plugins:
   - search:
-      lang: pt
+      lang: en
   # Lightbox nas figuras dos relatórios
   - glightbox
   - minify:

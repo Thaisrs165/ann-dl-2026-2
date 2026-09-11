@@ -1,6 +1,6 @@
 ---
 exercise: data
-ai_use: "ChatGPT and Claude were used to help interpret the requirements, develop and debug the Python code, organize the report, generate and review the visualizations, and improve the written explanations. I reviewed the submitted work and understand the methods and results."
+ai_use: "ChatGPT and Claude were used to support interpretation of the requirements, code development and debugging, visualization, report organization, and language review."
 ---
 
 # Data Preparation and Analysis for Neural Networks
@@ -23,7 +23,7 @@ repository never drift apart.
 **Approach.** Four 2D Gaussian classes (100 points each, 400 total) are drawn with the means
 and standard deviations given in the assignment. Each of the two features is sampled
 independently with `rng.normal(mean, std, size=100)`, so the covariance of every class is
-diagonal — there is no assumed correlation between $x_1$ and $x_2$.
+diagonal — there is no assumed correlation between \(x_1\) and \(x_2\).
 
 ``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
 --8<-- "docs/exercises/data/code/exercise1_2_synthetic_data.py:ex1-a"
@@ -34,8 +34,8 @@ learn. Since a single straight line only separates two half-planes, it cannot ca
 class regions out of the plane. Instead, Figure 1 shows the boundaries produced by a
 *nearest-mean* rule: every point on a fine grid is assigned to the class of its closest fixed
 mean (Euclidean distance), which is exactly the decision rule of a linear multiclass
-classifier of the form $\arg\min_k \lVert x - \mu_k \rVert$. Because that rule reduces to
-comparing linear functions of $x$, the boundary between any two adjacent regions is a straight
+classifier of the form \(\arg\min_k \lVert x - \mu_k \rVert\). Because that rule reduces to
+comparing linear functions of \(x\), the boundary between any two adjacent regions is a straight
 line (the perpendicular bisector of the two means), and the four regions together form a
 piecewise-linear partition of the plane — a set of linear boundaries, not one line.
 
@@ -47,9 +47,9 @@ nearest-mean classifier overlaid. Boundaries and means use markers and colors di
 the observations so the three layers cannot be confused.
 ///
 
-At `s = 1.0`, Classes 0 (mean $(2,3)$) and 1 (mean $(5,6)$) visibly overlap in Figure 1: their
-clouds interleave near $x_1 \approx 3$–$5$, which is exactly the pair with the smallest
-separation ratio measured in part B ($r_{01} = 1.3258$, see the table below). Classes 2 and 3
+At `s = 1.0`, Classes 0 (mean \((2,3)\)) and 1 (mean \((5,6)\)) visibly overlap in Figure 1: their
+clouds interleave near \(x_1 \approx 3\)–\(5\), which is exactly the pair with the smallest
+separation ratio measured in part B (\(r_{01} = 1.3258\), see the table below). Classes 2 and 3
 are comparatively isolated at this scale. The boundaries in Figure 1 are the nearest-mean
 regions described above — they do not come from a trained classifier (none was fit for this
 report), they are a deterministic function of the four fixed means and are shown only to
@@ -72,31 +72,34 @@ sharing axis limits computed from the combined data of all four scales so that t
 the clouds is directly comparable.
 ///
 
-**Pairwise separation ratios at `s = 1.0`.** Using $\bar\sigma_k = (\sigma_{k,x} +
-\sigma_{k,y})/2$ computed from the class standard deviations (not resampled from the data):
-$\bar\sigma_0 = 1.65$, $\bar\sigma_1 = 1.55$, $\bar\sigma_2 = 0.90$, $\bar\sigma_3 = 1.25$.
+**Pairwise separation ratios at `s = 1.0`.** Using \(\bar{\sigma}_k = (\sigma_{k,x} +
+\sigma_{k,y})/2\) computed from the class standard deviations (not resampled from the data):
+\(\bar{\sigma}_0 = 1.65\), \(\bar{\sigma}_1 = 1.55\), \(\bar{\sigma}_2 = 0.90\), \(\bar{\sigma}_3 = 1.25\).
 
-| Pair $(i,j)$ | $\lVert \mu_i - \mu_j \rVert$ | $\bar\sigma_i + \bar\sigma_j$ | $r_{ij}$ |
-|:---:|---:|---:|---:|
+Center distance is \(\lVert\mu_i-\mu_j\rVert\), combined average spread is
+\(\bar{\sigma}_i+\bar{\sigma}_j\), and their quotient is the separation ratio \(r_{ij}\).
+
+| Pair | Center distance \(\lVert\mu_i-\mu_j\rVert\) | Combined average spread \(\bar{\sigma}_i+\bar{\sigma}_j\) | Separation ratio \(r_{ij}\) |
+|---|---:|---:|---:|
 | (0, 1) | 4.2426 | 3.20 | **1.3258** |
 | (1, 2) | 6.7082 | 2.45 | 2.3800 |
 | (0, 2) | 6.7082 | 2.55 | 2.4802 |
 | (2, 3) | 7.6158 | 2.15 | 3.5422 |
-| (1, 3) | 10.198 | 2.80 | 3.6422 |
-| (0, 3) | 13.038 | 2.90 | 4.4960 |
+| (1, 3) | 10.1980 | 2.80 | 3.6422 |
+| (0, 3) | 13.0380 | 2.90 | 4.4960 |
 
-The smallest ratio is $r_{01} = 1.3258$, between Classes 0 and 1 — the two closest, most
+The smallest ratio is \(r_{01} = 1.3258\), between Classes 0 and 1 — the two closest, most
 similarly-spread classes, consistent with the overlap seen in Figure 1. Since every distance
-in the numerator is fixed and every $\bar\sigma$ in the denominator scales linearly with $s$,
-$r_{ij}(s) = r_{ij}(1)/s$; without regenerating any data, the smallest ratio at $s = 2.0$ is
-$1.3258 / 2 = 0.6629$.
+in the numerator is fixed and every \(\bar{\sigma}\) in the denominator scales linearly with \(s\),
+\(r_{ij}(s) = r_{ij}(1)/s\); without regenerating any data, the smallest ratio at \(s = 2.0\) is
+\(1.3258 / 2 = 0.6629\).
 
 **Mixing rate.** For each scale, every point's Euclidean distance to all four *fixed* means
 (the same means used in Figure 1, never recomputed per scale) is measured, the point is
 assigned to its nearest mean, and the mixing rate is the fraction of points whose nearest-mean
 label disagrees with the true generating label:
 
-| Scale $s$ | Mixing rate |
+| Scale \(s\) | Mixing rate |
 |:---:|---:|
 | 0.5 | 0.0025 |
 | 1.0 | 0.0725 |
@@ -111,7 +114,7 @@ label disagrees with the true generating label:
 
 **Where separation breaks down.** At `s = 0.5` the clouds in Figure 2 are compact and nearly
 disjoint (mixing rate 0.25%): straight boundaries separate them almost perfectly on this
-sample. At `s = 1.0` the smallest ratio is already close to 1 ($r_{01} = 1.33$) and Classes 0
+sample. At `s = 1.0` the smallest ratio is already close to 1 (\(r_{01} = 1.33\)) and Classes 0
 and 1 visibly interleave, though the mixing rate is still low (7.25%) because the other three
 pairs remain well separated. By `s = 2.0` the smallest ratio drops to 0.66 (below 1, meaning
 the gap between the closest means is now smaller than their combined average spread) and the
@@ -127,9 +130,9 @@ separator exists in the underlying distributions.
 ### C — Analysis
 
 - **Overlap at `s = 1`.** Classes 0 and 1 already overlap substantially (separation ratio
-  $r_{01} = 1.3258$, the smallest of the six pairs), while Classes 2 and 3 remain visually
-  distinct from the rest (their smallest ratios to any other class, $r_{12}=2.38$ and
-  $r_{23}=3.54$, are both well above 2). The mixing rate at `s = 1` is still low overall,
+  \(r_{01} = 1.3258\), the smallest of the six pairs), while Classes 2 and 3 remain visually
+  distinct from the rest (their smallest ratios to any other class, \(r_{12}=2.38\) and
+  \(r_{23}=3.54\), are both well above 2). The mixing rate at `s = 1` is still low overall,
   7.25%, because it averages over all four classes.
 - **One boundary vs. a set of boundaries.** A single binary decision line partitions the plane
   into exactly two half-planes, so it can separate at most two classes from each other. With
@@ -137,7 +140,7 @@ separator exists in the underlying distributions.
   class — which is exactly what the nearest-mean rule in Figure 1 produces: a piecewise-linear
   partition made of straight segments, not a single line.
 - **Boundaries in Figure 1.** The dashed lines are the perpendicular bisectors between
-  neighboring class means under the nearest-mean rule $\arg\min_k \lVert x-\mu_k\rVert$. They
+  neighboring class means under the nearest-mean rule \(\arg\min_k \lVert x-\mu_k\rVert\). They
   are drawn from a purely geometric computation on the four fixed means, not from any trained
   classifier, and are visually distinguished (black dashed lines vs. colored dots vs. gold
   stars) so they cannot be mistaken for data or for the means themselves.
@@ -148,7 +151,7 @@ separator exists in the underlying distributions.
   unavoidable for any boundary, straight or curved, once the spread is large enough relative
   to the gaps between means.
 - **Ratio and mixing rate move together.** As `s` grows from 0.5 to 4.0 the separation ratio
-  for every pair shrinks by the same factor $1/s$ (so the smallest ratio falls from 2.65 at
+  for every pair shrinks by the same factor \(1/s\) (so the smallest ratio falls from 2.65 at
   s=0.5 to 0.33 at s=4.0), while the mixing rate climbs monotonically from 0.25% to 43.5%. The
   two measurements describe the same geometric effect — the average class spread growing
   relative to the fixed distances between means — from two different angles: one purely from
@@ -159,9 +162,9 @@ separator exists in the underlying distributions.
 
 ### A — Dataset I: shifted Gaussians
 
-**Approach.** Class A ($N=500$) is drawn from a 5D multivariate normal centered at the origin
-with the given correlated covariance `sigma_a`; Class B ($N=500$) is drawn from a second
-multivariate normal centered at $(1.5,\dots,1.5)$ with a different covariance `sigma_b`. Both
+**Approach.** Class A (\(N=500\)) is drawn from a 5D multivariate normal centered at the origin
+with the given correlated covariance `sigma_a`; Class B (\(N=500\)) is drawn from a second
+multivariate normal centered at \((1.5,\dots,1.5)\) with a different covariance `sigma_b`. Both
 draws use `rng.multivariate_normal`, continuing the same `rng` from Exercise 1.
 
 ``` { .python .copy .select linenums='1' title="docs/exercises/data/code/exercise1_2_synthetic_data.py" }
@@ -170,9 +173,9 @@ draws use `rng.multivariate_normal`, continuing the same `rng` from Exercise 1.
 
 ### B — Dataset II: concentric shells
 
-**Approach.** Class C and Class D ($N=500$ each) are built by first drawing a 5D standard
+**Approach.** Class C and Class D (\(N=500\) each) are built by first drawing a 5D standard
 normal vector, normalizing it to a unit-length direction, then scaling that direction by a
-radius drawn from $\text{Normal}(2.0, 0.4)$ for Class C or $\text{Normal}(5.0, 0.4)$ for Class
+radius drawn from \(\text{Normal}(2.0, 0.4)\) for Class C or \(\text{Normal}(5.0, 0.4)\) for Class
 D. The result is two roughly spherical shells centered at the origin with different, mostly
 non-overlapping radii.
 
@@ -202,7 +205,7 @@ variance = 0.2164 + 0.2147 = **0.4310**.
 
 ![Radius-from-origin histograms for both datasets](figures/figure5.png)
 /// caption
-**Figure 5** — Left: Dataset I, radius $\lVert x \rVert$ from the origin, Class A vs. Class B,
+**Figure 5** — Left: Dataset I, radius \(\lVert x \rVert\) from the origin, Class A vs. Class B,
 common bins. Right: Dataset II, radius from the origin, Class C vs. Class D, common bins. The
 two classes in Dataset II barely overlap in radius even though their centers are nearly
 coincident.
@@ -220,7 +223,7 @@ with the direction that also separates the classes, since the two class means ar
 apart along a fixed direction. Dataset II's PCA projection (Figure 4, right) shows Classes C
 and D almost fully overlapping, and captures markedly less total variance (43.10%) split
 almost evenly between PC1 and PC2. This is expected because Dataset II's structure is radial
-(the class label depends on $\lVert x \rVert$, not on direction), while PCA looks only for the
+(the class label depends on \(\lVert x \rVert\), not on direction), while PCA looks only for the
 linear directions of maximum variance — it has no mechanism to prefer a rotationally symmetric
 "distance from center" feature over any other linear combination, so the class-defining signal
 does not concentrate in the top two components. Total variance preservation and preservation
@@ -236,7 +239,7 @@ case where they happen to coincide, and Dataset II shows a case where they do no
   a reliable summary of how separable two classes are: Dataset II is much more separable than
   its center distance suggests, precisely because its structure is radial rather than
   directional.
-- **No hyperplane can enclose a sphere.** A hyperplane $w^\top x + b = 0$ splits space into
+- **No hyperplane can enclose a sphere.** A hyperplane \(w^\top x + b = 0\) splits space into
   two unbounded half-spaces. Class C occupies a spherical shell around the origin — a bounded
   region surrounded on every side by Class D. Any single hyperplane that puts all of Class C on
   one side necessarily also puts an entire unbounded half-space of directions from Class D on
@@ -255,11 +258,11 @@ case where they happen to coincide, and Dataset II shows a case where they do no
   the classes. It says nothing conclusive about separability in the original 5D space — as
   confirmed directly below by the radial rule, which does separate the classes almost
   perfectly using information PCA does not project onto its first two axes.
-- **A radial separation rule.** The feature $f(x) = \sum_{i=1}^5 x_i^2 = \lVert x \rVert^2$
-  is nonlinear in $x$ but converts the radial structure into a simple threshold problem. Using
+- **A radial separation rule.** The feature \(f(x) = \sum_{i=1}^5 x_i^2 = \lVert x \rVert^2\)
+  is nonlinear in \(x\) but converts the radial structure into a simple threshold problem. Using
   the observed mean radii (Class C: 2.0071, Class D: 5.0101), a reasonable threshold sits at
-  their midpoint, $\approx 3.5086$, i.e. $f(x) \approx 12.3102$: classify as Class C when
-  $f(x) < 12.31$ and Class D otherwise. No classifier is trained to obtain this threshold — it
+  their midpoint, \(\approx 3.5086\), i.e. \(f(x) \approx 12.3102\): classify as Class C when
+  \(f(x) < 12.31\) and Class D otherwise. No classifier is trained to obtain this threshold — it
   is read directly off the generating/observed radius distributions in Figure 5, where the two
   histograms leave a visible gap around this value.
 
@@ -372,13 +375,13 @@ Global min/max, training data: **−1.9961 / 3.5080**. Global min/max, test data
 3.3687**.
 
 Standardization centers each numeric feature near 0 with unit variance *on the training
-set*, but nothing about `StandardScaler` guarantees every value lands inside $[-1, 1]$ — a
+set*, but nothing about `StandardScaler` guarantees every value lands inside \([-1, 1]\) — a
 value more than one standard deviation from the mean will fall outside that range, which is
 exactly what the matrix-wide max above (3.51 on train) shows. What standardization does
 guarantee is a common, roughly zero-centered scale across features, which keeps a `tanh`
 unit's input in the range where its gradient is not already flat, reducing (without fully
 eliminating) the risk of saturation compared to leaving spending amounts in raw dollars,
-where values in the thousands would immediately push `tanh` to $\pm 1$ with essentially
+where values in the thousands would immediately push `tanh` to \(\pm 1\) with essentially
 zero gradient.
 
 ### D — Verify and visualize
@@ -423,11 +426,11 @@ to everyone else, so the optimizer sees a much better-conditioned input distribu
 
 |  # | Item                                                                    | Your value |
 | -: | ------------------------------------------------------------------------| ---------- |
-|  1 | Mixing rate at $s=0.5$                                                  | 0.0025 |
-|  2 | Mixing rate at $s=1.0$                                                  | 0.0725 |
-|  3 | Mixing rate at $s=2.0$                                                  | 0.2325 |
-|  4 | Mixing rate at $s=4.0$                                                  | 0.4350 |
-|  5 | Smallest $r_{ij}$ at $s=1.0$, and which pair                            | 1.3258, pair (0, 1) |
+|  1 | Mixing rate at \(s=0.5\)                                                  | 0.0025 |
+|  2 | Mixing rate at \(s=1.0\)                                                  | 0.0725 |
+|  3 | Mixing rate at \(s=2.0\)                                                  | 0.2325 |
+|  4 | Mixing rate at \(s=4.0\)                                                  | 0.4350 |
+|  5 | Smallest \(r_{ij}\) at \(s=1.0\), and which pair                            | 1.3258, pair (0, 1) |
 |  6 | Distance between centers — Dataset I                                    | 3.4053 |
 |  7 | Distance between centers — Dataset II                                   | 0.2347 |
 |  8 | Explained variance PC1 + PC2 — Dataset I                                | 0.6723 |
@@ -443,3 +446,11 @@ to everyone else, so the optimizer sees a much better-conditioned input distribu
     terms prohibit redistribution). To reproduce Exercise 3, place it locally at
     `docs/exercises/data/spaceship-titanic/train.csv` (gitignored) and re-run
     `code/exercise3_spaceship_titanic.py`.
+
+## AI use
+
+ChatGPT and Claude were used to support the interpretation of the assignment requirements,
+development and debugging of the Python code, creation and review of the visualizations,
+organization of the report, and revision of the written explanations. I reviewed the final
+submission and used the explanations provided by these tools to understand the methods and
+results presented in this report.
