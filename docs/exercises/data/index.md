@@ -447,10 +447,10 @@ to everyone else, so the optimizer sees a much better-conditioned input distribu
     `docs/exercises/data/spaceship-titanic/train.csv` (gitignored) and re-run
     `code/exercise3_spaceship_titanic.py`.
 
-## AI use
+!!! info "AI-Use"
 
-ChatGPT and Claude were used to support the interpretation of the assignment requirements,
-development and debugging of the Python code, creation and review of the visualizations,
-organization of the report, and revision of the written explanations. I reviewed the final
-submission and used the explanations provided by these tools to understand the methods and
-results presented in this report.
+    ChatGPT and Claude were used to help interpret the assignment requirements,
+    develop and debug the Python code, generate and review the visualizations,
+    organize the report, and revise the written explanations. I reviewed the
+    final submission with the assistance of these explanations to understand
+    the methods and results presented.
