@@ -16,7 +16,7 @@ exercises, in the order shown below — it is never re-created or reset. The ful
 the snippets below are extracts from it, included via `--8<--` so the report and the
 repository never drift apart.
 
-## Exercise 1
+## Exercise 1 
 
 ### A — Generate the clouds
 
