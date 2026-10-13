@@ -8,3 +8,4 @@ target/
 # Spaceship Titanic dataset (Kaggle terms prohibit redistribution): place it locally at
 # docs/exercises/data/spaceship-titanic/train.csv to reproduce Exercise 3, never commit it.
 docs/exercises/data/spaceship-titanic/
+__pycache__/
