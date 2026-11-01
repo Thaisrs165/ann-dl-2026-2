@@ -14,7 +14,7 @@ Individual exercises: Data, Perceptron, MLP, VAE. See the [Exercises overview](e
 | [Data](exercises/data/index.md) | Completed |
 | [Perceptron](exercises/perceptron/index.md) | Completed |
 | [MLP](exercises/mlp/index.md) | Completed |
-| VAE | Not started |
+| [VAE](exercises/vae/index.md) | Completed |
 
 ## Project
 
