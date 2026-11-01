@@ -9,3 +9,6 @@ target/
 # docs/exercises/data/spaceship-titanic/train.csv to reproduce Exercise 3, never commit it.
 docs/exercises/data/spaceship-titanic/
 __pycache__/
+
+# MNIST, downloaded by the VAE scripts (torchvision) when run from the repo root
+/data/

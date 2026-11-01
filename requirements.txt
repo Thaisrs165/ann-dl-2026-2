@@ -16,3 +16,8 @@ numpy
 pandas
 matplotlib
 scikit-learn
+scipy
+# VAE: CPU wheels are enough (and much smaller than the default CUDA ones on Linux)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
