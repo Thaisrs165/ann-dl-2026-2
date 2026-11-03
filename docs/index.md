@@ -2,8 +2,7 @@
 
 **Thaís Silveira** · Semester **2026.2**
 
-This site contains my individual exercises for the ANN-DL course, and will host the team
-project once it starts.
+This site contains my individual exercises for the ANN-DL course and the team project.
 
 ## Exercises
 
@@ -18,4 +17,10 @@ Individual exercises: Data, Perceptron, MLP, VAE. See the [Exercises overview](e
 
 ## Project
 
-Team project, not started yet. See the [Project overview](projects/index.md).
+Team project. See the [Project overview](projects/index.md).
+
+| Deliverable | Status |
+|-------------|--------|
+| [Exploratory Data Analysis](https://thaisrs165.github.io/exploratory_data_analysis/){:target='_blank'} | Completed |
+| Classification or Regression | Not started |
+| Generative model | Not started |

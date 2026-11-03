@@ -142,3 +142,4 @@ nav:
       - VAE: exercises/vae/index.md
   - Project:
       - Overview: projects/index.md
+      - Exploratory Data Analysis: https://thaisrs165.github.io/exploratory_data_analysis/
